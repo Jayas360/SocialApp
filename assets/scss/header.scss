@@ -1,0 +1,32 @@
+header{
+    background-color: rgb(10, 201, 93);
+    color: white;
+    ul{
+        list-style: none;
+        overflow: hidden;
+        li{
+            line-height: 40px;
+            a{
+                display: block;
+                color: white;
+                text-decoration: none;
+            }
+            a:hover{
+                background-color: rgb(94, 92, 92);
+            }
+        }
+        li.h-left{
+            font-weight: 800;
+            font-size: 2em;
+            float: left;
+        }
+        li.h-right{
+            margin: 0px 10px;
+            font-weight: 600;
+            font-size: 1.25em;
+            font-weight:bolder;
+            float: right;
+        }
+    }
+
+}

@@ -1,0 +1,26 @@
+
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <link rel="stylesheet" href="/css/user-profile.css">
+    </head>
+    <body>
+
+        <header>
+            <%- include('./_header.ejs')%>
+        </header>
+
+        <main>
+            <h1>Profile Page</h1>
+            <h1><%= user.name %></h1>
+            <h1><%= user.email %></h1>
+        </main>
+
+        <footer>
+            <%- include('./_footer.ejs')%>
+        </footer>
+       
+    </body>
+</html>

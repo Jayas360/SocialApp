@@ -3,8 +3,29 @@
         <title>
             <%= title %>
         </title>
+        <link rel="stylesheet" href="/css/home.css">
+
     </head>
     <body>
-        <h1> Codiel/ <%= title %></h1>
+        <header>
+            <%- include('./_header.ejs')%>
+        </header>
+        <main>
+            <h1> Codiel/ <%= title %></h1> 
+
+            <section id="feed-posts">
+                <h4>Posts</h4>
+                <form action="" id="new-post-form" method="post">
+                    <textarea name="content" cols="30" rows="4"></textarea>
+                    <input type="submit" value="Post">
+                </form>
+            </section>
+
+            
+        </main>
+        
+        <footer>
+            <%- include('./_footer.ejs')%>
+        </footer>
     </body>
 </html>

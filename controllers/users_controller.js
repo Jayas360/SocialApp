@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const Post = require('../models/post');
+const { post } = require('../routes/users');
 
 module.exports.profile = function(req, res){
     return res.render('user_profile',{

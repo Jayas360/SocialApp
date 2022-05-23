@@ -1,2 +1,4 @@
 main {
   min-height: 100vh; }
+  main #posts-list-container ul div {
+    margin: 20px 10px; }

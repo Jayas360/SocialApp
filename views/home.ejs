@@ -1,68 +1,46 @@
-<html>
-    <head>
-        <title>
-            <%= title %>
-        </title>
-        <link rel="stylesheet" href="/css/home.css">
 
-    </head>
-    <body>
-        <header>
-            <%- include('./_header.ejs')%>
-        </header>
-        <main>
-            <h1> Codiel/ <%= title %></h1> 
+<link rel="stylesheet" href="/css/home.css">
+<header>
+    <%- include('_header') -%>
+</header>
 
-            <section id="feed-posts">
-                <h4>Posts</h4>
-                <% if(locals.user) { %>
-                <form action="/posts/create" id="new-post-form" method="POST">
-                    <textarea name="content" cols="30" rows="4" placeholder="Type here..." required></textarea>
-                    <input type="submit" value="Post">
-                </form>
+<div id="home-container">
+
+    <section id="feed-posts">
+        <h4>Posts</h4>
+        <% if(locals.user) { %>
+        <form action="/posts/create" id="new-post-form" method="POST">
+            <textarea name="content" cols="30" rows="4" placeholder="Type here..." required></textarea>
+            <input type="submit" value="Post">
+        </form>
+        <% } %>
+    
+        <div id="posts-list-container">
+            <ul>
+                <% for(post of posts) { %>
+                    <div>
+                        
+                        <%- include('_post') -%>
+
+                    </div>
                 <% } %>
-            </section>
-            <div id="posts-list-container">
-                <ul>
-                    <% for(post of posts) { %>
-                        <div>
-                            <li>
-                                <%= post.content %>
-                                <p>
-                                   Written By: <%= post.user.name %>
-                                </p>
-                                <div class="post-comment">
-                                    <% if(locals.user) {%>
-                                    <form action="/comments/create" method="POST">
-                                        <input type="hidden" name="postId" value="<%= post._id %>">
-                                        <textarea name="content" placeholder="Comment here..." rows="2" cols="30" required  ></textarea>
-                                        <input type="submit" value="add">
-                                    </form>
-                                    <% } %>
-                                </div>
-                                <div class="post-comment-list">
-                                    <ul id="post-comments-<%= post ._id%>" >
-                                        <% for(comment of post.comments) { %> 
-                                            <p>
-                                                <%= comment.content %>
-                                                <br>
-                                                <small>
-                                                    <%= comment.user.name %>
-                                                </small>
-                                            </p>
-                                        <% } %>
-                                    </ul>
-                                </div>
-                            </li>
-                        </div>
-                    <% } %>
-                </ul>
-            </div>
+            </ul>
+        </div>
+    </section>
 
-        </main>
-        
-        <footer>
-            <%- include('./_footer.ejs')%>
-        </footer>
-    </body>
-</html>
+
+    <section id="user-friends">
+        <h4>Friends</h4>
+        <% for(u of all_users) { %> 
+            <p>
+                <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+            </p>
+        <% } %>
+    </section>
+
+</div>
+
+
+<footer>
+    <%- include('_footer') -%>
+</footer>

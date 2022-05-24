@@ -25,3 +25,22 @@ module.exports.create = function(req, res){
         }
     })   
 }
+
+module.exports.destroy = function(req, res){ 
+    Comment.findById(req.params.id, function(err, comment){
+        if(err){
+
+        }
+        if(comment.user == req.user.id){
+            comment.remove();
+            Post.findById(comment.post, function(err, post){
+                post.comments.pull(comment.id);
+                post.save();
+                return res.redirect('back');
+            })
+        }else{
+            return res.redirect('back');
+        }
+
+    })
+}

@@ -1,7 +1,8 @@
 const User = require('../models/user');
-const Post = require('../models/post');
-const { post } = require('../routes/users');
-const { findById } = require('../models/user');
+
+//file system module is required to deal with files (here we are deleting user avatar file)
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = function(req, res){
     User.findById(req.params.id,function(err, user){
@@ -13,14 +14,7 @@ module.exports.profile = function(req, res){
     
 };
 
-module.exports.update = async function(req, res){
-    // if(req.user.id == req.params.id){
-    //     User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
-    //         return res.redirect('back');
-    //     })
-    // }else{
-    //     return res.status(401).send('Unauthorized');
-    // }
+module.exports.update = async function(req, res){ 
 
     if(req.user.id == req.params.id){
         try {
@@ -30,6 +24,10 @@ module.exports.update = async function(req, res){
                 user.name = req.body.name; 
                 user.email = req.body.email;
                 if(req.file){
+                    //to check if user already have an avatar and delete it, if exist
+                    if(user.avatar){
+                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    }
                     user.avatar = User.avatarPath + '/' + req.file.filename;
                 }
                 user.save(); 

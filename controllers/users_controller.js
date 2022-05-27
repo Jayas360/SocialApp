@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Post = require('../models/post');
 const { post } = require('../routes/users');
+const { findById } = require('../models/user');
 
 module.exports.profile = function(req, res){
     User.findById(req.params.id,function(err, user){
@@ -12,15 +13,36 @@ module.exports.profile = function(req, res){
     
 };
 
-module.exports.update = function(req, res){
+module.exports.update = async function(req, res){
+    // if(req.user.id == req.params.id){
+    //     User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+    //         return res.redirect('back');
+    //     })
+    // }else{
+    //     return res.status(401).send('Unauthorized');
+    // }
+
     if(req.user.id == req.params.id){
-        User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+        try {
+            let user = await User.findById(req.user.id);
+            User.uploadedAvatar(req, res, function(err){
+                if(err){console.log('****Multer Error: ', err);}
+                user.name = req.body.name; 
+                user.email = req.body.email;
+                if(req.file){
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+                user.save(); 
+                return res.redirect('back');
+            }); 
+        } catch (error) {
+            req.flash('error',error);
             return res.redirect('back');
-        })
+        }
     }else{
+        req.flash('error', 'Unauthorized!');
         return res.status(401).send('Unauthorized');
     }
-    
 }
 
 //render the sign up page
@@ -73,10 +95,12 @@ module.exports.create = function(req, res){
 
 //sign in and create a session for the user
 module.exports.createSession = function(req, res){
+    req.flash('success', "Logged in successfully");
     return res.redirect('/');
 }
 
 module.exports.destroySession = function(req, res){
     req.logout();
+    req.flash('success', "You have logged out");
     return res.redirect('/');
 }

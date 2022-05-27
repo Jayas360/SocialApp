@@ -1,16 +1,16 @@
-<li>
+<li id="post-<%= post._id%>">
     <%= post.content %> 
     <p>
        Written By: <%= post.user.name %>
     </p>
     <% if(locals.user && locals.user.id == post.user.id ) { %>
         <small>
-            <a href="/posts/destroy/<%= post.id %>">Delete Post</a>
+            <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">Delete Post</a>
         </small>
     <% } %>
     <div class="post-comment">
         <% if(locals.user) {%>
-        <form action="/comments/create" method="POST">
+        <form action="/comments/create" id="new-comment-form" method="POST">
             <input type="hidden" name="postId" value="<%= post._id %>">
             <textarea name="content" placeholder="Comment here..." rows="2" cols="30" required  ></textarea>
             <input type="submit" value="add">
@@ -25,3 +25,4 @@
         </ul>
     </div>
 </li>
+

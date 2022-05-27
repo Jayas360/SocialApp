@@ -1,4 +1,9 @@
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <link rel="stylesheet" href="/css/home.css">
 <header>
     <%- include('_header') -%>
@@ -18,18 +23,15 @@
         <div id="posts-list-container">
             <ul>
                 <% for(post of posts) { %>
-                    <div>
                         
                         <%- include('_post') -%>
 
-                    </div>
                 <% } %>
             </ul>
         </div>
     </section>
 
-
-    <section id="user-friends">
+    <section id="user-friends">                                    
         <h4>Friends</h4>
         <% for(u of all_users) { %> 
             <p>
@@ -44,3 +46,26 @@
 <footer>
     <%- include('_footer') -%>
 </footer>
+
+<script>
+    <% if(flash.success && flash.success.length > 0 ) { %>
+        new Noty({
+            theme: 'relax',
+            text: "<%= flash.success %>",
+            type: 'success',
+            layout: 'topRight',
+            timeout: 1500
+        }).show();
+    <% } %>
+    // <% if(flash.error && flash.error.length > 0 ) { %>
+    //     new Noty({
+    //         theme: 'relax',
+    //         text: "<%= flash.error %>",
+    //         type: 'error',
+    //         layout: 'topRight',
+    //         timeout: 1500
+    //     }).show();
+    // <% } %>
+</script>
+<script src="/js/home_posts.js"></script>
+<script src="/js/post_comments.js"></script>

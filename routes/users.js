@@ -14,11 +14,16 @@ router.get('/sign-in', usersController.signIn);
 router.post('/create', usersController.create);
 
 //use passport as a middleware to authenticate
-router.post('/create-session', passport.authenticate(
+router.post('/create-session', passport.authenticate( 
     'local',
     {failureRedirect:'/users/sign-in'}
 ), usersController.createSession);
 
 router.get('/sign-out',usersController.destroySession);
+
+router.get('/auth/google',passport.authenticate('google',{scope: ['profile', 'email']}) );
+//here scope means the info we are looking to fetch, contains array of strings
+
+router.get('/auth/google/callback', passport.authenticate('google',{failureRedirect: '/users/sign-in'}), usersController.createSession);
 
 module.exports = router; 

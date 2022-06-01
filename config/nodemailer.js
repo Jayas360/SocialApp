@@ -32,6 +32,6 @@ let renderTemplate = (data, relativePath) => {
 }
 
 module.exports = {
-    transporter: this.transporter,
+    transporter: transport,
     renderTemplate: renderTemplate
 }

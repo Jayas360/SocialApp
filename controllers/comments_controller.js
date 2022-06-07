@@ -1,6 +1,7 @@
 const { localsName } = require('ejs');
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const Like = require('../models/like');
 const commentsMailer = require('../mailers/comments_mailer');
 const commentEmailWorker = require('../workers/comment_email_worker');
 
@@ -58,6 +59,7 @@ module.exports.destroy = async function(req, res){
             let post = await Post.findById(comment.post);
             post.comments.pull(comment.id);
             post.save();
+            await Like.deleteMany({likeable: req.params.id, onModel:'Comment'});
             return res.redirect('back');
         }else{
             return res.redirect('back');

@@ -6,11 +6,19 @@
         padding: 10px;
     }
 
-    #user-friends{
+    #users{
         width: 30%;
         padding: 10px;
         border-left: 1px solid lightgray;
         min-height: 100vh;
         background-color: whitesmoke;
+        #friends-list{
+            padding: 10px;
+            background-color: rgb(135, 155, 114);
+        }
+        #users-list{
+            padding: 10px;
+            background-color: rgb(212, 163, 212);
+        }
     }
 }

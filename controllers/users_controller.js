@@ -1,16 +1,42 @@
 const User = require('../models/user');
+const Friendship = require('../models/friendship');
 
 //file system module is required to deal with files (here we are deleting user avatar file)
 const fs = require('fs');
 const path = require('path');
 
-module.exports.profile = function(req, res){
-    User.findById(req.params.id,function(err, user){
-        return res.render('user_profile',{
-            title:"User Profile",
-            profile_user: user
-        });
-    })
+module.exports.profile = async function(req, res){
+    try {
+        let user = await User.findById(req.params.id);
+        if(user){
+            let isFriend = false;
+            let friend = await Friendship.findOne({
+                from_user: req.user.id,
+                to_user: req.params.id
+            });
+            console.log('sent', friend);
+            if(!friend){
+                friend = await Friendship.findOne({
+                    from_user: req.params.id,
+                    to_user: req.user.id
+                });
+                console.log('recieved', friend);
+            }
+            
+            if(friend) isFriend = true;
+
+            return res.render('user_profile',{
+                title:"User Profile",
+                profile_user: user,
+                isFriend
+            });
+        }else{
+            res.redirect('back');
+        }
+    } catch (error) {
+        res.redirect('back');
+    }
+    
     
 };
 

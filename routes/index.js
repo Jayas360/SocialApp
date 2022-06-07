@@ -10,6 +10,10 @@ router.use('/comments',require('./comments'));
 
 router.use('/api', require('./api'));
 
+router.use('/likes', require('./likes'));
+
+router.use('/friends', require('./friends'));
+
 console.log('router loaded');
 
 module.exports = router;

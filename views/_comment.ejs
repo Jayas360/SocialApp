@@ -6,6 +6,11 @@
             <%= comment.user.name %>
         </small>
         <br>
+        <% if(locals.user) { %>
+            <a class="toggle" href="/likes/toggle/?id=<%= comment._id %>&type=Comment" ><img src="/images/thumb-up.png" alt="like"></a>
+            <%= comment.likes.length %>
+            <br>
+        <% } %>
         <% if(locals.user && locals.user.id == comment.user._id ) { %>
             <a href="/comments/destroy/<%= comment.id %>">delete</a>
         <% } %>

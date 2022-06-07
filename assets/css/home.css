@@ -3,9 +3,15 @@
   #home-container #feed-posts {
     width: 70%;
     padding: 10px; }
-  #home-container #user-friends {
+  #home-container #users {
     width: 30%;
     padding: 10px;
     border-left: 1px solid lightgray;
     min-height: 100vh;
     background-color: whitesmoke; }
+    #home-container #users #friends-list {
+      padding: 10px;
+      background-color: #879b72; }
+    #home-container #users #users-list {
+      padding: 10px;
+      background-color: #d4a3d4; }

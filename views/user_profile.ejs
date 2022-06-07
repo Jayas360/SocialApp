@@ -26,6 +26,11 @@
             <h1>Profile Page</h1>
             <h1><%= profile_user.name %></h1>
             <h1><%= profile_user.email %></h1>
+            <% if(isFriend){ %>
+                <a href="/friends/remove/<%= profile_user._id %>">Remove Friend</a>
+            <% } else { %>
+                <a href="/friends/create/<%= profile_user._id %>">Add Friend</a>
+            <% } %>
     <% }%>
 </main>
 

@@ -31,13 +31,30 @@
         </div>
     </section>
 
-    <section id="user-friends">                                    
-        <h4>Friends</h4>
-        <% for(u of all_users) { %> 
-            <p>
+    <section id="users"> 
+        <section id="friends-list">
+            <h4>Friends</h4>
+            <% for(f of friends) { %> 
+                <p>
+                    <% if(locals.user.id == f.from_user.id) { %>
+                        <a href="/users/profile/<%= f.to_user.id %>"><%=  f.to_user.name %></a>
+                    <%} else {%>
+                        <a href="/users/profile/<%= f.from_user.id %>"><%=  f.from_user.name %></a>
+                    <% } %>
+                </p>
+            <% } %>
+            
+        </section>   
+
+        <section id="users-list">
+            <h4>Users</h4>
+            <% for(u of all_users) { %> 
+                <p>
                 <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
-            </p>
-        <% } %>
+                </p>
+            <% } %>
+        </section>                                   
+        
     </section>
 
 </div>

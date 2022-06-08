@@ -57,6 +57,10 @@
         
     </section>
 
+    <section id="chat-section">
+        <%- include('chatbox') -%>
+    </section>
+
 </div>
 
 
@@ -86,3 +90,19 @@
 </script>
 <script src="/js/home_posts.js"></script>
 <script src="/js/post_comments.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js" ></script> -->
+<script src="/js/chat_engine.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<% if(locals.user) { %>
+<script>
+    console.log('chat engine class called');
+    //new ChatEngine();
+    chatEngine('user-chat-box', '<%= locals.user.email %>');
+    console.log('chat engine class completed');
+
+    //var socket = io.connect('http://localhost:5000');
+
+</script>
+<% } %>

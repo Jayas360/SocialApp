@@ -15,3 +15,7 @@
     #home-container #users #users-list {
       padding: 10px;
       background-color: #d4a3d4; }
+  #home-container #chat-section {
+    position: fixed;
+    right: 10px;
+    bottom: 10px; }

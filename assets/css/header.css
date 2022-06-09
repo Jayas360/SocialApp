@@ -1,1 +1,24 @@
-header{background-color:#0ac95d;color:#fff}header ul{list-style:none;overflow:hidden}header ul li{line-height:40px}header ul li a{display:block;color:#fff;text-decoration:none}header ul li a:hover{background-color:#5e5c5c}header ul li.h-left{font-weight:800;font-size:2em;float:left}header ul li.h-right{margin:0 10px;font-weight:600;font-size:1.25em;font-weight:bolder;float:right}
+header {
+  background-color: #0ac95d;
+  color: white; }
+  header ul {
+    list-style: none;
+    overflow: hidden; }
+    header ul li {
+      line-height: 40px; }
+      header ul li a {
+        display: block;
+        color: white;
+        text-decoration: none; }
+      header ul li a:hover {
+        background-color: #5e5c5c; }
+    header ul li.h-left {
+      font-weight: 800;
+      font-size: 2em;
+      float: left; }
+    header ul li.h-right {
+      margin: 0px 10px;
+      font-weight: 600;
+      font-size: 1.25em;
+      font-weight: bolder;
+      float: right; }

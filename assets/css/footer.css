@@ -1,1 +1,10 @@
-footer{background-color:grey;display:flex;line-height:60px}footer div{margin-left:20px}footer div a{margin:0;text-decoration:none;font-size:22px}
+footer {
+  background-color: grey;
+  display: flex;
+  line-height: 60px; }
+  footer div {
+    margin-left: 20px; }
+    footer div a {
+      margin: 0px;
+      text-decoration: none;
+      font-size: 22px; }

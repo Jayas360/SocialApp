@@ -7,7 +7,7 @@
         </small>
         <br>
         <% if(locals.user) { %>
-            <a class="toggle" href="/likes/toggle/?id=<%= comment._id %>&type=Comment" ><img src="/images/thumb-up.png" alt="like"></a>
+            <a class="toggle" href="/likes/toggle/?id=<%= comment._id %>&type=Comment" ><img src="<%= assetPath('images/thumb-up.png') %>" alt="like"></a>
             <%= comment.likes.length %>
             <br>
         <% } %>

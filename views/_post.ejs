@@ -1,11 +1,11 @@
-<link rel="stylesheet" href="/css/post.css">
+<link rel="stylesheet" href="<%= assetPath('css/post.css') %>">
 <li class="post" id="post-<%= post._id%>">
     <%= post.content %> 
     <p>
        Written By: <%= post.user.name %>
     </p>
     <% if(locals.user) { %>
-        <a class="toggle" href="/likes/toggle/?id=<%= post._id %>&type=Post" ><img src="/images/thumb-up.png" alt="like"></a>
+        <a class="toggle" href="/likes/toggle/?id=<%= post._id %>&type=Post" ><img src="<%= assetPath('images/thumb-up.png') %>" alt="like"></a>
         <%= post.likes.length %>
         <br>
     <% } %>

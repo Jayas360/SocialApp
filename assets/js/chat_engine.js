@@ -1,6 +1,6 @@
 
 const chatEngine = (chatBoxId, userEmail) => {
-    var socket = io.connect('http://localhost:5000');
+    var socket = io.connect('http://3.109.122.222:5000');
 
     // var input = document.getElementById('chat-message');
     // var btn = document.getElementById('send-message');
